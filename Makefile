@@ -1,7 +1,7 @@
 CC=gcc
 
-CFLAGS=-Wall -Iinclude
-LDFLAGS=-g -lncurses
+CFLAGS=-Wall -g -Iinclude
+LDFLAGS=-lncurses
 
 SRCDIR=src
 OBJDIR=obj

@@ -30,7 +30,7 @@ struct food *
 food_init(void) {
 	struct food *f = NULL;
 
-	f = calloc(1, sizeof(struct food));
+	f = calloc(sizeof(struct food), 1);
 
 	return f;
 }

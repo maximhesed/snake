@@ -2,10 +2,9 @@
 
 struct snake *
 snake_init(void) {
-	struct snake *s = NULL;
-	s = calloc(1, sizeof(struct snake));
+	struct snake *s = malloc(sizeof(struct snake));
 
-	s->u = calloc(SNAKE_MAX_LENGTH, sizeof(struct unit));
+	s->u = malloc(sizeof(struct unit) * SNAKE_MAX_LENGTH);
 
 	/* head */
 	s->u[0].x = SNAKE_START_POS_X;
@@ -106,8 +105,5 @@ snake_check_collide_food(struct snake *s, struct food *f) {
 
 bool
 snake_check_length(struct snake *s) {
-	if (s->len == SNAKE_MAX_LENGTH)
-		return true;
-
-	return false;
+	return ((s->len == SNAKE_MAX_LENGTH) ? true : false);
 }

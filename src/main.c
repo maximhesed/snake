@@ -9,7 +9,7 @@
 
 int
 main(void) {
-	initscr();
+	SCREEN *scr = newterm(NULL, stdout, stdin);
 
 	if (!has_colors()) {
 		printf("Sorry, but your terminal don't support colors!\n");
@@ -30,16 +30,16 @@ main(void) {
 	curs_set(0);
 	nodelay(stdscr, true);
 	keypad(stdscr, true);
+	intrflush(stdscr, true);
 
 	board_draw();
 
 	/* snake init */
-	struct snake *s = NULL;
-	s = snake_init();
+	struct snake *s = snake_init();
 
 	/* food init */
-	struct food *f = NULL;
-	f = food_init();
+	struct food *f = food_init();
+
 	food_gen(f);
 
 	int key;
@@ -70,14 +70,15 @@ main(void) {
 		usleep(50 * 1000);
 	}
 
-	echo();
-	curs_set(2);
-	nodelay(stdscr, false);
-	keypad(stdscr, false);
 	endwin();
+	delscreen(scr);
 
-	free(f);
+	/* snake free */
+	free(s->u);
 	free(s);
+
+	/* food free */
+	free(f);
 
 	return 0;
 }

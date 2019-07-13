@@ -26,11 +26,15 @@ static const int food_score[] = {
 	1000
 };
 
+static int rnd(int min, int max);
+
+static int rnd(int min, int max) {
+	return (min + rand() % ((max + 1) - min));
+}
+
 struct food *
 food_init(void) {
-	struct food *f = NULL;
-
-	f = calloc(sizeof(struct food), 1);
+	struct food *f = malloc(sizeof(struct food));
 
 	return f;
 }
@@ -39,11 +43,11 @@ void
 food_gen(struct food *f) {
 	srand(time(NULL));
 
-	/* TODO: make food generation algorithm */
-
-	f->sym = food_sym[rand() % 3];
-	f->color = food_color[rand() % 5];
-	f->score = food_score[rand() % 6];
+	f->x = rnd(BOARD_LEFT + 1, BOARD_RIGHT - 1);
+	f->y = rnd(BOARD_TOP + 1, BOARD_BOTTOM - 1);
+	f->sym = food_sym[rnd(0, 3)];
+	f->color = food_color[rnd(0, 5)];
+	f->score = food_score[rnd(0, 6)];
 }
 
 void

@@ -13,6 +13,7 @@
 #define SNAKE_START_POS_Y 6
 #define SNAKE_START_LENGTH 2
 #define SNAKE_TAIL_SYM '+'
+#define SNAKE_SPEED 10
 
 extern struct food food;
 

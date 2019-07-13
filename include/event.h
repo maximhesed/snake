@@ -2,6 +2,7 @@
 #define EVENT_H
 
 #include <stdbool.h>
+#include <unistd.h>
 #include <ncurses.h>
 
 #define KEY_ESC 27

@@ -24,7 +24,7 @@ snake_init(void) {
 		s->u[i].color = 8;
 	}
 
-	s->len = SNAKE_START_LENGTH + 2;
+	s->len = SNAKE_START_LENGTH + 1;
 	s->score = 0;
 
 	return s;
@@ -86,7 +86,7 @@ bool
 snake_check_collide_self(struct snake *s) {
 	int i;
 
-	for (i = 0 + 1; i < SNAKE_MAX_LENGTH; i++) {
+	for (i = 0 + 1; i < s->len; i++) {
 		if ((s->u[i].x == s->u[0].x) &&
 			(s->u[i].y == s->u[0].y))
 			return true;

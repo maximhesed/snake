@@ -48,22 +48,25 @@ main(void) {
 		key = getch();
 
 		move(BOARD_TOP, BOARD_RIGHT + 2);
-		printw("length = %d", s->len - 2);
+		printw("length = %d", s->len - 1);
+		move(BOARD_TOP + 1, BOARD_RIGHT + 2);
+		printw("score = %d", s->score);
 
 		food_draw(f);
 
 		snake_refresh_dir(s, key);
 		snake_refresh_head(s);
-		snake_move(s);
-		snake_draw(s);
-		snake_erase_tail_end(s);
-		snake_check_collide_food(s, f);
 
-		/* TODO: to combine */
-		if (snake_check_collide_board(s) || snake_check_collide_self(s)) {
+		if (snake_check_collide_board(s) ||
+			snake_check_collide_self(s)) {
 			event_lose();
 			break;
 		}
+
+		snake_erase_tail_end(s);
+		snake_move(s);
+		snake_draw(s);
+		snake_check_collide_food(s, f);
 
 		if (snake_check_max_length(s)) {
 			event_win();
@@ -73,7 +76,7 @@ main(void) {
 		if (event_check_exit(key))
 			break;
 
-		usleep(50 * 1000);
+		usleep(500000 / SNAKE_SPEED);
 	}
 
 	endwin();

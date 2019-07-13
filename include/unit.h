@@ -13,7 +13,7 @@ enum dir {
 struct unit {
 	int x;
 	int y;
-	char sym;
+	char c;
 	int color;
 	enum dir dir;
 	int px;

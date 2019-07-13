@@ -18,9 +18,9 @@ snake_init(void) {
 	int i;
 
 	for (i = 0 + 1; i < SNAKE_MAX_LENGTH; i++) {
-		s->u[i].x = SNAKE_START_POS_X - 1;
-		s->u[i].y = SNAKE_START_POS_Y;
-		s->u[i].sym = SNAKE_TAIL_SYM;
+		s->u[i].x = -1;
+		s->u[i].y = -1;
+		s->u[i].c = SNAKE_TAIL_SYM;
 		s->u[i].color = 8;
 	}
 
@@ -41,16 +41,16 @@ snake_refresh_dir(struct snake *s, int key) {
 void
 snake_refresh_head(struct snake *s) {
 	if (s->u[0].dir == DIR_LEFT)
-		s->u[0].sym = '<';
+		s->u[0].c = '<';
 
 	if (s->u[0].dir == DIR_RIGHT)
-		s->u[0].sym = '>';
+		s->u[0].c = '>';
 
 	if (s->u[0].dir == DIR_UP)
-		s->u[0].sym = '^';
+		s->u[0].c = '^';
 
 	if (s->u[0].dir == DIR_DOWN)
-		s->u[0].sym = 'v';
+		s->u[0].c = 'v';
 }
 
 void
@@ -82,14 +82,26 @@ snake_erase_tail_end(struct snake *s) {
 	mvaddch(s->u[s->len - 1].y, s->u[s->len - 1].x, ' ');
 }
 
-void
+bool
 snake_check_collide_self(struct snake *s) {
+	int i;
 
+	for (i = 0 + 1; i < SNAKE_MAX_LENGTH; i++) {
+		if ((s->u[i].x == s->u[0].x) &&
+			(s->u[i].y == s->u[0].y))
+			return true;
+	}
+
+	return false;
 }
 
-void
+bool
 snake_check_collide_board(struct snake *s) {
+	if ((s->u[0].x == BOARD_LEFT || s->u[0].x == BOARD_RIGHT) ||
+		(s->u[0].y == BOARD_TOP || s->u[0].y == BOARD_BOTTOM))
+		return true;
 
+	return false;
 }
 
 void
@@ -99,11 +111,11 @@ snake_check_collide_food(struct snake *s, struct food *f) {
 		s->len++;
 		s->score += f->score;
 
-		food_gen(f);
+		food_gen(f, s);
 	}
 }
 
 bool
-snake_check_length(struct snake *s) {
+snake_check_max_length(struct snake *s) {
 	return ((s->len == SNAKE_MAX_LENGTH) ? true : false);
 }

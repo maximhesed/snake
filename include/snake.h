@@ -14,6 +14,8 @@
 #define SNAKE_START_LENGTH 2
 #define SNAKE_TAIL_SYM '+'
 
+extern struct food food;
+
 struct snake {
 	struct unit *u;
 	int len;
@@ -26,9 +28,9 @@ void snake_refresh_head(struct snake *s);
 void snake_draw(struct snake *s);
 void snake_move(struct snake *s);
 void snake_erase_tail_end(struct snake *s);
-void snake_check_collide_self(struct snake *s);
-void snake_check_collide_board(struct snake *s);
+bool snake_check_collide_self(struct snake *s);
+bool snake_check_collide_board(struct snake *s);
 void snake_check_collide_food(struct snake *s, struct food *f);
-bool snake_check_length(struct snake *s);
+bool snake_check_max_length(struct snake *s);
 
 #endif /* SNAKE_H */

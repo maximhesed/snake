@@ -58,7 +58,7 @@ unit_move(struct unit *u) {
 void
 unit_draw(struct unit *u) {
 	attron(COLOR_PAIR(u->color));
-	mvaddch(u->y, u->x, u->sym);
+	mvaddch(u->y, u->x, u->c);
 	attroff(COLOR_PAIR(u->color));
 }
 

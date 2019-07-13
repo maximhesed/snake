@@ -7,6 +7,9 @@
 #include <ncurses.h>
 
 #include "board.h"
+#include "snake.h"
+
+extern struct snake snake;
 
 struct food {
 	int x;
@@ -17,7 +20,7 @@ struct food {
 };
 
 struct food * food_init(void);
-void food_gen(struct food *f);
+void food_gen(struct food *f, struct snake *s);
 void food_draw(struct food *f);
 
 #endif /* FOOD_H */

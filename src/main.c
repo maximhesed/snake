@@ -40,7 +40,7 @@ main(void) {
 	/* food init */
 	struct food *f = food_init();
 
-	food_gen(f);
+	food_gen(f, s);
 
 	int key;
 
@@ -59,7 +59,13 @@ main(void) {
 		snake_erase_tail_end(s);
 		snake_check_collide_food(s, f);
 
-		if (snake_check_length(s)) {
+		/* TODO: to combine */
+		if (snake_check_collide_board(s) || snake_check_collide_self(s)) {
+			event_lose();
+			break;
+		}
+
+		if (snake_check_max_length(s)) {
 			event_win();
 			break;
 		}

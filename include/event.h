@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <ncurses.h>
 
-#define KEY_ESC 27
+#define KEY_ESC 0x1b
 
 bool event_check_exit(int key);
 void event_lose();

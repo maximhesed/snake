@@ -12,11 +12,11 @@
 extern struct snake snake;
 
 struct food {
-	int x;
-	int y;
-	char sym;
-	int color;
-	int score;
+    int x;
+    int y;
+    char sym;
+    int color;
+    int score;
 };
 
 struct food * food_init(void);

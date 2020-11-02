@@ -18,9 +18,9 @@
 extern struct food food;
 
 struct snake {
-	struct unit *u;
-	int len;
-	int score;
+    struct unit *u;
+    int len;
+    int score;
 };
 
 struct snake * snake_init(void);

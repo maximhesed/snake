@@ -1,21 +1,19 @@
 #include "event.h"
 
 bool
-event_check_exit(int key) {
-	if (key == KEY_ESC) {
-		if (getch() == -1)
-			return true;
-	}
-
-	return false;
+event_check_exit(int key)
+{
+    return key == KEY_ESC && getch() == -1;
 }
 
 void
-event_lose(void) {
+event_lose(void)
+{
 
 }
 
 void
-event_win(void) {
+event_win(void)
+{
 
 }

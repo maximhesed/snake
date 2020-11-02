@@ -4,20 +4,20 @@
 #include <ncurses.h>
 
 enum dir {
-	DIR_LEFT,
-	DIR_RIGHT,
-	DIR_UP,
-	DIR_DOWN
+    DIR_LEFT,
+    DIR_RIGHT,
+    DIR_UP,
+    DIR_DOWN
 };
 
 struct unit {
-	int x;
-	int y;
-	char c;
-	int color;
-	enum dir dir;
-	int px;
-	int py;
+    int x;
+    int y;
+    char c;
+    int color;
+    enum dir dir;
+    int px;
+    int py;
 };
 
 void unit_set_prev(struct unit *u, int px, int py);
